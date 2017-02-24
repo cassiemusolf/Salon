@@ -75,11 +75,28 @@ namespace SalonApp
 
             //Act
             Stylist foundStylist = Stylist.Find(testStylist.GetId());
-            Console.WriteLine(foundStylist.GetId());
-            Console.WriteLine(testStylist.GetId());
 
             //Assert
             Assert.Equal(testStylist, foundStylist);
+        }
+
+        [Fact]
+        public void Test_Update_UpdatesStylistInDatabase()
+        {
+          //Arrange
+          string name = "Becky";
+          string phone = "253-234-5678";
+          Stylist testStylist = new Stylist(name, phone);
+          testStylist.Save();
+          string newName = "Rebecca";
+
+          //Act
+          testStylist.Update(newName);
+
+          string result = testStylist.GetName();
+
+          //Assert
+          Assert.Equal(newName, result);
         }
 
         public void Dispose()
