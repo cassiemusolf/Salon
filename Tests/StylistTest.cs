@@ -28,5 +28,17 @@ namespace SalonApp
             Client.DeleteAll();
             Stylist.DeleteAll();
         }
+
+        [Fact]
+        public void Test_Equal_ReturnsTrueForSameStylist()
+        {
+          //Arrange, Act
+          Stylist firstStylist = new Stylist("Becky", "253-234-5678");
+          Stylist secondStylist = new Stylist("Becky", "253-234-5678");
+
+          //Assert
+          Assert.Equal(firstStylist, secondStylist);
+        }
+
     }
 }
