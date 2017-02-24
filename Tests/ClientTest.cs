@@ -24,6 +24,17 @@ namespace SalonApp
         }
 
         [Fact]
+        public void Test_Equal_ReturnsTrueIfClientsAreTheSame()
+        {
+            //Arrange, Act
+            Client firstClient = new Client("Brittany", "253-234-5678");
+            Client secondClient = new Client("Brittany", "253-234-5678");
+
+            //Assert
+            Assert.Equal(firstClient, secondClient);
+        }
+
+        [Fact]
         public void Dispose()
         {
             Client.DeleteAll();

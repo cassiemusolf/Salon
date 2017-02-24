@@ -9,16 +9,12 @@ namespace SalonApp
         private int _id;
         private string _name;
         private string _phone;
-        private string _service;
-        private DateTime _date;
 
-        public Client(string Name, string Phone, string Service, DateTime Date, int Id = 0)
+        public Client(string Name, string Phone, int Id = 0)
         {
             _id = Id;
             _name = Name;
             _phone = Phone;
-            _service = Service;
-            _date = Date;
         }
 
         public int GetId()
@@ -41,22 +37,23 @@ namespace SalonApp
         {
             _phone = newPhone;
         }
-        public string GetService()
+
+        public override bool Equals(System.Object otherClient)
         {
-            return _service;
+            if(!(otherClient is Client))
+            {
+                return false;
+            }
+            else
+            {
+                Client newClient = (Client) otherClient;
+                bool idEquality = (this.GetId() == newClient.GetId());
+                bool nameEquality = (this.GetName() == newClient.GetName());
+                bool phoneEquality = (this.GetPhone() == newClient.GetPhone());
+                return (idEquality && nameEquality && phoneEquality);
+            }
         }
-        public void SetService(string newService)
-        {
-            _service = newService;
-        }
-        public DateTime GetDate()
-        {
-            return _date;
-        }
-        public void SetDate(DateTime newDate)
-        {
-            _date = newDate;
-        }
+
 
         public static List<Client> GetAll()
         {
@@ -73,9 +70,8 @@ namespace SalonApp
                 int clientId = rdr.GetInt32(0);
                 string clientName = rdr.GetString(1);
                 string clientPhone = rdr.GetString(2);
-                string clientService = rdr.GetString(3);
-                DateTime clientDate = rdr.GetDateTime(4);
-                Client newClient = new Client(clientName, clientPhone, clientService, clientDate, clientId);
+
+                Client newClient = new Client(clientName, clientPhone, clientId);
                 allClients.Add(newClient);
             }
 
