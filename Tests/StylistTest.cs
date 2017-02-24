@@ -104,13 +104,11 @@ namespace SalonApp
         {
             //Arrange
             string name1 = "Rebecca";
-            string phone1 = "253-234-5678";
-            Stylist testStylist1 = new Stylist(name1, phone1);
+            Stylist testStylist1 = new Stylist(name1, "234-234-234");
             testStylist1.Save();
 
             string name2 = "Bethany";
-            string phone2 = "253-777-8888";
-            Stylist testStylist2 = new Stylist(name2, phone2);
+            Stylist testStylist2 = new Stylist(name2,"234-234-4675");
             testStylist2.Save();
 
             Client testClient1 = new Client("Cathy", "235-234-5344", testStylist1.GetId());

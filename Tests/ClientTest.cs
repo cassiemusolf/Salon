@@ -99,6 +99,46 @@ namespace SalonApp
         }
 
         [Fact]
+        public void Test_Update_UpdatesClientInDatabase()
+        {
+            //Arrange
+            string name = "Becky";
+            string phone = "253-234-5678";
+            int clientStylistId = 2;
+            Client testClient = new Client(name, phone, clientStylistId);
+            testClient.Save();
+            string newPhone = "323-313-1212";
+
+            //Act
+            testClient.Update(newPhone);
+
+            string result = testClient.GetPhone();
+
+            //Assert
+            Assert.Equal(newPhone, result);
+        }
+
+        [Fact]
+        public void Test_Delete_DeletesClientFromDatabase()
+        {
+            //Arrange
+            Client testClient1 = new Client("Cathy", "235-234-5344", 2);
+            testClient1.Save();
+            Client testClient2 = new Client("Bob", "112-235-5362", 1);
+            testClient2.Save();
+
+            //Act
+            testClient1.Delete();
+
+            List<Client> resultClients = Client.GetAll();
+            List<Client> testClientList = new List<Client> {testClient2};
+
+            //Assert
+            Assert.Equal(testClientList, resultClients);
+        }
+
+
+        [Fact]
         public void Dispose()
         {
             Client.DeleteAll();
