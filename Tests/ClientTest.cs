@@ -27,8 +27,8 @@ namespace SalonApp
         public void Test_Equal_ReturnsTrueIfClientsAreTheSame()
         {
             //Arrange, Act
-            Client firstClient = new Client("Brittany", "253-234-5678");
-            Client secondClient = new Client("Brittany", "253-234-5678");
+            Client firstClient = new Client("Brittany", "253-234-5678", 1);
+            Client secondClient = new Client("Brittany", "253-234-5678", 1);
 
             //Assert
             Assert.Equal(firstClient, secondClient);
@@ -38,7 +38,7 @@ namespace SalonApp
         public void Test_Save_SavesToDatabase()
         {
             //Arrange
-            Client testClient = new Client("Brittany", "253-234-5678");
+            Client testClient = new Client("Brittany", "253-234-5678", 1);
 
             //Act
             testClient.Save();
@@ -53,7 +53,7 @@ namespace SalonApp
         public void Test_Save_AssignsIdToObject()
         {
             //Arrange
-            Client testClient = new Client("Brittany", "253-234-5678");
+            Client testClient = new Client("Brittany", "253-234-5678", 1);
 
             //Act
             testClient.Save();
@@ -70,7 +70,7 @@ namespace SalonApp
         public void Test_Find_FindsClientInDatabase()
         {
             //Arrange
-            Client testClient = new Client("Brittany", "253-234-6789");
+            Client testClient = new Client("Brittany", "253-234-6789", 1);
             testClient.Save();
 
             //Act
