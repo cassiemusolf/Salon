@@ -1,0 +1,19 @@
+@{
+  Layout="Shared/_Layout.cshtml";
+}
+
+@if (@Model["clients"].Count == 0)
+{
+  <p>No clients have been added for this stylist yet!</p>
+}
+else
+{
+<h2>Clients for this Stylist:</h2>
+  <ul>
+    @foreach (var client in @Model["clients"])
+    {
+      <li><a href="/clients/@client.GetId()">@client.GetName()</a></li>
+    }
+  </ul>
+}
+<p><a href="/clients/new">Add New</a> | <a href="/">Return Home</a></p>
