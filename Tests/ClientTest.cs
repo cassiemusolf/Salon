@@ -75,8 +75,7 @@ namespace SalonApp
 
             //Act
             Client foundClient = Client.Find(testClient.GetId());
-            Console.WriteLine(foundClient.GetId());
-            Console.WriteLine(testClient.GetId());
+
             //Assert
             Assert.Equal(testClient, foundClient);
         }

@@ -19,35 +19,6 @@ namespace SalonApp
             _stylistId = StylistId;
         }
 
-        public int GetId()
-        {
-            return _id;
-        }
-        public string GetName()
-        {
-            return _name;
-        }
-        public void SetName(string newName)
-        {
-            _name = newName;
-        }
-        public string GetPhone()
-        {
-            return _phone;
-        }
-        public void SetPhone(string newPhone)
-        {
-            _phone = newPhone;
-        }
-        public int GetStylistId()
-        {
-          return _stylistId;
-        }
-        public void SetStylistId(int newStylistId)
-        {
-          _stylistId = newStylistId;
-        }
-
         public override bool Equals(System.Object otherClient)
         {
             if(!(otherClient is Client))
@@ -64,6 +35,37 @@ namespace SalonApp
                 return (idEquality && nameEquality && phoneEquality && stylistEquality);
             }
         }
+
+        public int GetId()
+        {
+            return _id;
+        }
+        public string GetName()
+        {
+            return _name;
+        }
+        public void SetName(string newName)
+        {
+            _name = newName;
+        }
+
+        public string GetPhone()
+        {
+            return _phone;
+        }
+        public void SetPhone(string newPhone)
+        {
+            _phone = newPhone;
+        }
+        public int GetStylistId()
+        {
+            return _stylistId;
+        }
+        public void SetStylistId(int newStylistId)
+        {
+            _stylistId = newStylistId;
+        }
+
 
         public static List<Client> GetAll()
         {
@@ -103,7 +105,7 @@ namespace SalonApp
             SqlConnection conn = DB.Connection();
             conn.Open();
 
-            SqlCommand cmd = new SqlCommand("INSERT INTO clients (name, phone, stylist_id) OUTPUT INSERTED.id VALUES (@ClientName, @ClientPhone, @ClientStylistId);", conn);
+            SqlCommand cmd = new SqlCommand("INSERT INTO clients (name, phone, stylists_id) OUTPUT INSERTED.id VALUES (@ClientName, @ClientPhone, @ClientStylistId);", conn);
 
             SqlParameter nameParameter = new SqlParameter();
             nameParameter.ParameterName = "@ClientName";
@@ -153,14 +155,15 @@ namespace SalonApp
             string foundClientName = null;
             string foundClientPhone = null;
             int foundClientStylistId = 0;
+
             while(rdr.Read())
             {
                 foundClientId = rdr.GetInt32(0);
                 foundClientName = rdr.GetString(1);
                 foundClientPhone = rdr.GetString(2);
-                foundClientStylistId = rdr.GetInt32(4);
+                foundClientStylistId = rdr.GetInt32(3);
             }
-            Client foundClient = new Client(foundClientName, foundClientPhone,  foundClientStylistId, foundClientId);
+            Client foundClient = new Client(foundClientName, foundClientPhone, foundClientStylistId, foundClientId);
 
             if (rdr != null)
             {
