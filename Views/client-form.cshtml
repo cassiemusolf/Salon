@@ -1,0 +1,12 @@
+@{
+  Layout="Shared/_Layout.cshtml";
+}
+
+<form action="/clients/new" method="post">
+  <label for="client-name">Client Name</label>
+  <input id="client-name" name="client-name" type="text">
+  <label for="client-phone">Client Phone Number</label>
+  <input id="client-phone" name="client-phone" type="text">
+  <button class="btn btn-lg btn-primary" type="submit">Add</button>
+</form>
+<p><a href="/">Return home</a></p>
