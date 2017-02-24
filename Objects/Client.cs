@@ -151,7 +151,6 @@ namespace SalonApp
             {
               conn.Close();
             }
-
             return foundClient;
         }
 

@@ -49,9 +49,41 @@ namespace SalonApp
           Assert.Equal(testList, result);
         }
 
+        [Fact]
+        public void Test_Save_AssignsIdToObject()
+        {
+            //Arrange
+            Stylist testStylist = new Stylist("Becky", "253-234-5678");
+
+            //Act
+            testStylist.Save();
+            Stylist savedStylist = Stylist.GetAll()[0];
+
+            int result = savedStylist.GetId();
+            int testId = testStylist.GetId();
+
+            //Assert
+            Assert.Equal(testId, result);
+        }
+
+        [Fact]
+        public void Test_Find_FindsStylistInDatabase()
+        {
+            //Arrange
+            Stylist testStylist = new Stylist("Becky", "253-234-5678");
+            testStylist.Save();
+
+            //Act
+            Stylist foundStylist = Stylist.Find(testStylist.GetId());
+            Console.WriteLine(foundStylist.GetId());
+            Console.WriteLine(testStylist.GetId());
+
+            //Assert
+            Assert.Equal(testStylist, foundStylist);
+        }
+
         public void Dispose()
         {
-            Client.DeleteAll();
             Stylist.DeleteAll();
         }
     }

@@ -70,12 +70,13 @@ namespace SalonApp
         public void Test_Find_FindsClientInDatabase()
         {
             //Arrange
-            Client testClient = new Client("Brittany", "253-234-5678");
+            Client testClient = new Client("Brittany", "253-234-6789");
             testClient.Save();
 
             //Act
             Client foundClient = Client.Find(testClient.GetId());
-
+            Console.WriteLine(foundClient.GetId());
+            Console.WriteLine(testClient.GetId());
             //Assert
             Assert.Equal(testClient, foundClient);
         }
