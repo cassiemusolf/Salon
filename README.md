@@ -7,22 +7,22 @@
 ## Specifications
 
 * _Test that the database is empty at first.
-  input: 0 output: 0_
+input: 0 output: 0_
 
 * _User enters two of the same stylists or clients,    program returns true if they are equal.
-  input: "Stylist: Mackenzie, Phone: 253-312-3109", "Stylist: Mackenzie, Phone: 253-312-3109" output: true_
+input: "Stylist: Mackenzie, Phone: 253-312-3109", "Stylist: Mackenzie, Phone: 253-312-3109" output: true_
 
- * _User can view all of the stylists at the salon.
-  input: "View All" output: "Stylists: Mackenzie, Barb, Sam, Paul, Ashley, Megan, Tabitha"_
+* _User can view all of the stylists at the salon.
+input: "View All" output: "Stylists: Mackenzie, Barb, Sam, Paul, Ashley, Megan, Tabitha"_
 
 * _User enters a client or stylist and it is saved to the database.
-  input: "Stylist: Mackenzie, Phone: 253-312-3109" output: "Stylist: Mackenzie, Phone: 253-312-3109"_
+input: "Stylist: Mackenzie, Phone: 253-312-3109" output: "Stylist: Mackenzie, Phone: 253-312-3109"_
 
 * _User enters a stylist or a client and their information is saved and assigned an id number.
-  input: "Stylist: Mackenzie, Phone: 253-312-3109" output: id = 1_
+input: "Stylist: Mackenzie, Phone: 253-312-3109" output: id = 1_
 
 * _Adds ability to search through the webpage to find a specific stylist or client.
-  input: "Mackenzie." output: "Stylist: Mackenzie, Phone: 253-312-3109"_
+input: "Mackenzie." output: "Stylist: Mackenzie, Phone: 253-312-3109"_
 
 * _Get list of all clients of one stylist.
 input: "Stylist: Mackenzie" output: "Clients: "Bill, Monica, Megan, Tyler"_
