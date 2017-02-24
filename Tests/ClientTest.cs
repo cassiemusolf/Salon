@@ -81,6 +81,24 @@ namespace SalonApp
         }
 
         [Fact]
+        public void Test_GetClients_RetrievesAllClientsWithStylist()
+        {
+            Stylist testStylist = new Stylist("Becky", "253-234-6789");
+            testStylist.Save();
+
+            Client firstClient = new Client("Bella", "253-234-6789", testStylist.GetId());
+            firstClient.Save();
+            Client secondClient = new Client("Camille", "234-234-0494", testStylist.GetId());
+            secondClient.Save();
+
+
+            List<Client> testClientList = new List<Client> {firstClient, secondClient};
+            List<Client> resultClientList = testStylist.GetClients();
+
+            Assert.Equal(testClientList, resultClientList);
+        }
+
+        [Fact]
         public void Dispose()
         {
             Client.DeleteAll();
