@@ -6,17 +6,16 @@
 {
   <p>No clients have been added yet!</p>
 }
-else
-{
-  <h1>Here is a list of all clients:</h1>
   <ul>
     @foreach (var client in Model)
     {
-      <li>@client.GetName() | <a href="/client/edit/@client.GetId()">Edit</a> | <a href="/client/delete/@client.GetId()">Delete</a></li>
-    }
+      <li><a href="/clients/@client.GetId()">"@client.GetName()</a> | <a href="/client/edit/@client.GetId()">Edit</a> | <a href="/client/delete/@client.GetId()">Delete</a></li>
   </ul>
-  <form action="/clients/delete" method="post">
-    <button class="btn btn-lg btn-danger" type="submit">Clear all clients</button>
-  </form>
+
+
+<form action="/clients/delete" method="post">
+<button class="btn btn-lg btn-danger" type="submit">Clear all clients</button>
+</form>
 }
-<p><a href="/clients/new">Add A Client</a> | <p><a href="/">Return home</a></p>
+
+<p><a href="/clients/new">Add A Client</a> | <a href="/">Return home</a></p>

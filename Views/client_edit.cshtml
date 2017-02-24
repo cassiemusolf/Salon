@@ -1,0 +1,19 @@
+@{
+  Layout="Shared/_Layout.cshtml";
+}
+
+<h2>Edit Client: @Model.GetName()</h2>
+<form action="/client/edit/@Model.GetId()" method="post">
+<div class="form-group">
+  <input type="hidden" name="_method" value="PATCH">
+  <input name="client-id" type="hidden" value="@Model.GetId()">
+  <label for="client-name">Client name
+  <input id="client-name" name="client-name" type="text"></label>
+  <label for="client-phone">Client phone
+  <input id="client-phone" name="client-phone" type="text"></label>
+  </div>
+<div class="buttons">
+    <button class="btn btn-lg btn-primary" type="submit">Edit</button>
+</div>
+</form>
+<p><a href="/">Return Home</a></p>
