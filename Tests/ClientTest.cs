@@ -67,6 +67,20 @@ namespace SalonApp
         }
 
         [Fact]
+        public void Test_Find_FindsClientInDatabase()
+        {
+            //Arrange
+            Client testClient = new Client("Brittany", "253-234-5678");
+            testClient.Save();
+
+            //Act
+            Client foundClient = Client.Find(testClient.GetId());
+
+            //Assert
+            Assert.Equal(testClient, foundClient);
+        }
+
+        [Fact]
         public void Dispose()
         {
             Client.DeleteAll();
