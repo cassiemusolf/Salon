@@ -50,6 +50,23 @@ namespace SalonApp
         }
 
         [Fact]
+        public void Test_Save_AssignsIdToObject()
+        {
+            //Arrange
+            Client testClient = new Client("Brittany", "253-234-5678");
+
+            //Act
+            testClient.Save();
+            Client savedClient = Client.GetAll()[0];
+
+            int result = savedClient.GetId();
+            int testId = testClient.GetId();
+
+            //Assert
+            Assert.Equal(testId, result);
+        }
+
+        [Fact]
         public void Dispose()
         {
             Client.DeleteAll();
