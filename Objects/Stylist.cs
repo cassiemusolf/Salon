@@ -86,6 +86,39 @@ namespace SalonApp
             return allStylists;
         }
 
+        public void Save()
+        {
+            SqlConnection conn = DB.Connection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand("INSERT INTO stylists (name, phone) OUTPUT INSERTED.id VALUES (@StylistName, @StylistPhone);", conn);
+
+            SqlParameter nameParameter = new SqlParameter();
+            nameParameter.ParameterName = "@StylistName";
+            nameParameter.Value = this.GetName();
+            cmd.Parameters.Add(nameParameter);
+
+            SqlParameter phoneParameter = new SqlParameter();
+            phoneParameter.ParameterName = "@StylistPhone";
+            phoneParameter.Value = this.GetPhone();
+            cmd.Parameters.Add(phoneParameter);
+
+            SqlDataReader rdr = cmd.ExecuteReader();
+
+            while(rdr.Read())
+            {
+                this._id = rdr.GetInt32(0);
+            }
+            if (rdr != null)
+            {
+                rdr.Close();
+            }
+            if (conn != null)
+            {
+                conn.Close();
+            }
+        }
+
         public static void DeleteAll()
         {
             SqlConnection conn = DB.Connection();

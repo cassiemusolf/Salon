@@ -23,12 +23,6 @@ namespace SalonApp
             Assert.Equal(0, result);
         }
 
-        public void Dispose()
-        {
-            Client.DeleteAll();
-            Stylist.DeleteAll();
-        }
-
         [Fact]
         public void Test_Equal_ReturnsTrueForSameStylist()
         {
@@ -40,5 +34,25 @@ namespace SalonApp
           Assert.Equal(firstStylist, secondStylist);
         }
 
+        [Fact]
+        public void Test_Save()
+        {
+          //Arrange
+          Stylist testStylist = new Stylist("Becky", "253-234-5678");
+          testStylist.Save();
+
+          //Act
+          List<Stylist> result = Stylist.GetAll();
+          List<Stylist> testList = new List<Stylist>{testStylist};
+
+          //Assert
+          Assert.Equal(testList, result);
+        }
+
+        public void Dispose()
+        {
+            Client.DeleteAll();
+            Stylist.DeleteAll();
+        }
     }
 }
