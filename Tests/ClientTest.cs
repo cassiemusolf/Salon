@@ -35,6 +35,21 @@ namespace SalonApp
         }
 
         [Fact]
+        public void Test_Save_SavesToDatabase()
+        {
+            //Arrange
+            Client testClient = new Client("Brittany", "253-234-5678");
+
+            //Act
+            testClient.Save();
+            List<Client> result = Client.GetAll();
+            List<Client> testList = new List<Client>{testClient};
+
+            //Assert
+            Assert.Equal(testList, result);
+        }
+
+        [Fact]
         public void Dispose()
         {
             Client.DeleteAll();

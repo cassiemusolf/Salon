@@ -54,7 +54,6 @@ namespace SalonApp
             }
         }
 
-
         public static List<Client> GetAll()
         {
             List<Client> allClients = new List<Client>{};
@@ -85,6 +84,39 @@ namespace SalonApp
             }
 
             return allClients;
+        }
+
+        public void Save()
+        {
+            SqlConnection conn = DB.Connection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand("INSERT INTO clients (name, phone) OUTPUT INSERTED.id VALUES (@ClientName, @ClientPhone);", conn);
+
+            SqlParameter nameParameter = new SqlParameter();
+            nameParameter.ParameterName = "@ClientName";
+            nameParameter.Value = this.GetName();
+            cmd.Parameters.Add(nameParameter);
+
+            SqlParameter phoneParameter = new SqlParameter();
+            phoneParameter.ParameterName = "@ClientPhone";
+            phoneParameter.Value = this.GetPhone();
+            cmd.Parameters.Add(phoneParameter);
+
+            SqlDataReader rdr = cmd.ExecuteReader();
+
+            while(rdr.Read())
+            {
+                this._id = rdr.GetInt32(0);
+            }
+            if (rdr != null)
+            {
+                rdr.Close();
+            }
+            if (conn != null)
+            {
+                conn.Close();
+            }
         }
 
         public static void DeleteAll()
