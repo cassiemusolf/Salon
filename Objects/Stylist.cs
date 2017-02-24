@@ -10,7 +10,7 @@ namespace SalonApp
         private string _name;
         private string _phone;
 
-        public Client(string Name, string Phone, int Id = 0)
+        public Stylist(string Name, string Phone, int Id = 0)
         {
             _id = Id;
             _name = Name;
@@ -72,9 +72,11 @@ namespace SalonApp
 
         public static void DeleteAll()
         {
-            SqlConnection conn = new DB.Connection()
+            SqlConnection conn = DB.Connection();
             conn.Open();
             SqlCommand cmd = new SqlCommand("DELETE FROM stylists;", conn);
             cmd.ExecuteNonQuery();
             conn.Close();
         }
+    }
+}

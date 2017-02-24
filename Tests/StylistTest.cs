@@ -25,8 +25,8 @@ namespace SalonApp
 
         public void Dispose()
         {
-            Task.DeleteAll();
-            Category.DeleteAll();
+            Client.DeleteAll();
+            Stylist.DeleteAll();
         }
     }
 }
