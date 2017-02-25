@@ -2,7 +2,7 @@
   Layout="Shared/_Layout.cshtml";
 }
 
-<h1>Are you sure you want to delete this client?</h1>
+<h2>Are you sure you want to delete this client?</h2>
 
 <form action="/client/delete/@Model.GetId()" method="post">
     <div class="form-group edit-name">
@@ -13,4 +13,4 @@
      <button class="btn btn-lg btn-primary" type="submit">Delete</button>
 </div>
 </form>
-<p><a href="/">Return Home</a></p>
+<h3><a href="/">Return Home</a></h3>

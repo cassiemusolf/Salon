@@ -2,11 +2,18 @@
   Layout="Shared/_Layout.cshtml";
 }
 
+<h2>Add a New Stylist</h2>
+
 <form action="/stylists/new" method="post">
-  <label for="stylist-name">Stylist Name</label>
-  <input id="stylist-name" name="stylist-name" type="text">
-  <label for="stylist-phone">Stylist Phone Number</label>
-  <input id="stylist-phone" name="stylist-phone" type="text">
-  <button class="btn btn-lg btn-primary" type="submit">Add</button>
+<div class="form-group">
+  <label for="stylist-name">Stylist Name
+  <input id="stylist-name" name="stylist-name" type="text"></label>
+</div>
+<div class="form-group">
+  <label for="stylist-phone">Stylist Phone Number
+  <input id="stylist-phone" name="stylist-phone" type="text"></label>
+  <br>
+  <button class="btn btn-lg btn-danger" type="submit">Add</button>
+</div>
 </form>
-<p><a href="/">Return home</a></p>
+<h3><a href="/">Return home</a></h3>
