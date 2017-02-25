@@ -12,7 +12,7 @@ else
   <ul>
     @foreach (var client in @Model["clients"])
     {
-      <li><a href="/clients/@client.GetId()">@client.GetName()</a></li>
+      <li><a href="/clients/@client.GetId()">@Model.GetClients()</a></li>
     }
   </ul>
 }

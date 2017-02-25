@@ -29,8 +29,8 @@ namespace SalonApp
                 return View["success.cshtml"];
             };
             Get["/clients/new"] = _ => {
-                List<Client> AllClients = Client.GetAll();
-                return View["client-form.cshtml", AllClients];
+                List<Stylist> AllStylists = Stylist.GetAll();
+                return View["client-form.cshtml", AllStylists];
             };
             Post["/clients/new"] = _ => {
                 Client newClient = new Client(Request.Form["client-name"], Request.Form["client-phone"], Request.Form["stylist-id"]);
@@ -45,17 +45,21 @@ namespace SalonApp
                 Stylist.DeleteAll();
                 return View["success.cshtml"];
             };
-            Get["/stylists/{id}"] = parameters => {
+            Get["/stylist/{id}"] = parameters => {
                 Dictionary<string, object> model = new Dictionary<string, object>();
                 var SelectedStylist = Stylist.Find(parameters.id);
                 var StylistClients = SelectedStylist.GetClients();
-                model.Add("stylists", SelectedStylist);
+                model.Add("stylist", SelectedStylist);
                 model.Add("clients", StylistClients);
                 return View["client.cshtml", model];
             };
             Get["stylist/edit/{id}"] = parameters => {
                 Stylist SelectedStylist = Stylist.Find(parameters.id);
                 return View["stylist_edit.cshtml", SelectedStylist];
+            };
+            Get["/clients/{id}"] = parameters => {
+                Client client = Client.Find(parameters.id);
+                return View["client.cshtml", client];
             };
             Get["stylist/delete/{id}"] = parameters => {
                 Stylist SelectedStylist = Stylist.Find(parameters.id);
