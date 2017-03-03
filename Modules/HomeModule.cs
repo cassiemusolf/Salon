@@ -76,7 +76,7 @@ namespace SalonApp
             };
             Patch["/client/edit/{id}"] = parameters => {
                 Client SelectedClient = Client.Find(parameters.id);
-                SelectedClient.Update(Request.Form["client-name"]);
+                SelectedClient.Update(Request.Form["client-phone"]);
                 return View["success.cshtml"];
             };
             Get["client/delete/{id}"] = parameters => {

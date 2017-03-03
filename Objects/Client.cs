@@ -181,12 +181,22 @@ namespace SalonApp
             SqlConnection conn = DB.Connection();
             conn.Open();
 
-            SqlCommand cmd = new SqlCommand("UPDATE clients SET phone = @NewPhone OUTPUT INSERTED.phone WHERE id = @ClientId;", conn);
+            SqlCommand cmd = new SqlCommand("UPDATE clients SET phone = @NewPhone OUTPUT INSERTED.* WHERE id = @ClientId;", conn);
+
+            // SqlParameter newNameParameter = new SqlParameter();
+            // newNameParameter.ParameterName = "@NewName";
+            // newNameParameter.Value = NewName;
+            // cmd.Parameters.Add(newNameParameter);
 
             SqlParameter newPhoneParameter = new SqlParameter();
             newPhoneParameter.ParameterName = "@NewPhone";
             newPhoneParameter.Value = newPhone;
             cmd.Parameters.Add(newPhoneParameter);
+
+            // SqlParameter newStylistIdParameter = new SqlParameter();
+            // newStylistIdParameter.ParameterName = "@NewStylistId";
+            // newStylistIdParameter.Value = NewStylistId;
+            // cmd.Parameters.Add(newStylistIdParameter);
 
             SqlParameter clientIdParameter = new SqlParameter();
             clientIdParameter.ParameterName = "@ClientId";
@@ -196,7 +206,7 @@ namespace SalonApp
 
             while(rdr.Read())
             {
-                this._phone = rdr.GetString(0);
+                this._phone = rdr.GetString(2);
             }
 
             if (rdr != null)
