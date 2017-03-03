@@ -1,10 +1,10 @@
 @{
   Layout="Shared/_Layout.cshtml";
 }
-
+<h2>Client List</h2>
 @if (@Model.Count == 0)
 {
-  <p>No clients have been added yet!</p>
+  <h4>No clients have been added yet!</h4>
 }
   <ul>
     @foreach (var client in Model)
@@ -13,7 +13,7 @@
     }
     </ul>
 <form action="/clients/delete" method="post">
-<button class="btn btn-lg btn-danger" type="submit">Clear all clients</button>
+<button class="btn btn-lg btn-primary" type="submit">Clear All Clients</button>
 </form>
 
-<h3><a href="/clients/new">Add A Client</a> | <a href="/">Return home</a></h3>
+<h3><a href="/clients/new">Add A Client</a> | <a href="/">Return Home</a></h3>

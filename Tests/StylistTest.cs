@@ -132,6 +132,7 @@ namespace SalonApp
         public void Dispose()
         {
             Stylist.DeleteAll();
+            Client.DeleteAll();
         }
     }
 }

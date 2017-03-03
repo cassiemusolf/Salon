@@ -26,7 +26,8 @@ namespace SalonApp
             Post["/stylists/new"] = _ => {
                 Stylist newStylist = new Stylist(Request.Form["stylist-name"], Request.Form["stylist-phone"]);
                 newStylist.Save();
-                return View["success.cshtml"];
+                List<Stylist> AllStylists = Stylist.GetAll();
+                return View["stylists.cshtml", AllStylists];
             };
             Get["/clients/new"] = _ => {
                 List<Stylist> AllStylists = Stylist.GetAll();
@@ -35,15 +36,18 @@ namespace SalonApp
             Post["/clients/new"] = _ => {
                 Client newClient = new Client(Request.Form["client-name"], Request.Form["client-phone"], Request.Form["stylist-id"]);
                 newClient.Save();
-                return View["success.cshtml"];
+                List<Client> AllClients = Client.GetAll();
+                return View["clients.cshtml", AllClients];
             };
             Post["/clients/delete"] = _ => {
                 Client.DeleteAll();
-                return View["success.cshtml"];
+                List<Client> AllClients = Client.GetAll();
+                return View["clients.cshtml", AllClients];
             };
             Post["/stylists/delete"] = _ => {
                 Stylist.DeleteAll();
-                return View["success.cshtml"];
+                List<Stylist> AllStylists = Stylist.GetAll();
+                return View["stylists.cshtml", AllStylists];
             };
             Get["/stylist/{id}"] = parameters => {
                 Dictionary<string, object> model = new Dictionary<string, object>();
@@ -57,9 +61,10 @@ namespace SalonApp
                 Stylist SelectedStylist = Stylist.Find(parameters.id);
                 return View["stylist_edit.cshtml", SelectedStylist];
             };
-            Get["/clients/{id}"] = parameters => {
-                Client client = Client.Find(parameters.id);
-                return View["client.cshtml", client];
+            Patch["/stylist/edit/{id}"] = parameters => {
+                Stylist SelectedStylist = Stylist.Find(parameters.id);
+                SelectedStylist.Update(Request.Form["stylist-name"]);
+                return View["success.cshtml"];
             };
             Get["stylist/delete/{id}"] = parameters => {
                 Stylist SelectedStylist = Stylist.Find(parameters.id);
@@ -68,7 +73,12 @@ namespace SalonApp
             Delete["stylist/delete/{id}"] = parameters => {
                 Stylist SelectedStylist = Stylist.Find(parameters.id);
                 SelectedStylist.Delete();
-                return View["success.cshtml"];
+                List<Stylist> AllStylists = Stylist.GetAll();
+                return View["stylists.cshtml", AllStylists];
+            };
+            Get["/clients/{id}"] = parameters => {
+                Client client = Client.Find(parameters.id);
+                return View["client.cshtml", client];
             };
             Get["/client/edit/{id}"] = parameters => {
                 Client SelectedClient = Client.Find(parameters.id);
@@ -76,7 +86,7 @@ namespace SalonApp
             };
             Patch["/client/edit/{id}"] = parameters => {
                 Client SelectedClient = Client.Find(parameters.id);
-                SelectedClient.Update(Request.Form["client-phone"]);
+                SelectedClient.Update(Request.Form["client-name"], Request.Form["client-phone"]);
                 return View["success.cshtml"];
             };
             Get["client/delete/{id}"] = parameters => {
@@ -86,7 +96,8 @@ namespace SalonApp
             Delete["client/delete/{id}"] = parameters => {
                 Client SelectedClient = Client.Find(parameters.id);
                 SelectedClient.Delete();
-                return View["success.cshtml"];
+                List<Client> AllClients = Client.GetAll();
+                return View["clients.cshtml", AllClients];
             };
         }
     }

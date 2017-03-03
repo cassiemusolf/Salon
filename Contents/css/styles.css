@@ -4,9 +4,27 @@
     height: 400px;
     color: white;
     text-align: center;
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Unica One', cursive;
 }
 
+.mainpic1 {
+    max-height: 592px;
+    border: 2px solid #4A0791;
+}
+
+.mainpic2 {
+    max-height: 592px;
+    border: 2px solid #4A0791;
+}
+
+h1.title {
+    font-size: 110px;
+}
+
+.mainpics {
+    margin-left: 14.5%;
+    margin-right: auto;
+}
 body {
     font-family: 'Raleway', sans-serif;
 }
@@ -21,7 +39,10 @@ h2 {
 
 li {
     font-size: 30px;
-    margin-top: 15px;
+}
+
+ul {
+    margin-top: 40px;
 }
 
 h3 {
@@ -47,4 +68,40 @@ input {
 button {
     margin-top: 30px;
     padding: 10px;
+    text-align: center;
+}
+
+.transbox1 {
+    color: #4A0791;
+    padding: 20px;
+    background-color: rgba(201,192,195, 0.5);
+    border: 1.5px solid black;
+}
+
+.transbox2 {
+    color: #4A0791;
+    padding: 20px;
+    background-color: rgba(201,192,195, 0.5);
+    border: 1.5px solid black;
+    margin-left: 220px;
+}
+
+.row {
+    display: inline-block;
+}
+
+.container {
+    margin-bottom: 100px;
+}
+
+select {
+    padding: 15px;
+}
+
+a:link, a:visited {
+    color: #4A0791;
+}
+
+a:hover {
+    color: #006dcc;
 }

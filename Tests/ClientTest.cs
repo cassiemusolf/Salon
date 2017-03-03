@@ -98,25 +98,30 @@ namespace SalonApp
             Assert.Equal(testClientList, resultClientList);
         }
 
-        [Fact]
-        public void Test_Update_UpdatesClientInDatabase()
-        {
-            //Arrange
-            string name = "Becky";
-            string phone = "253-234-5678";
-            int clientStylistId = 2;
-            Client testClient = new Client(name, phone, clientStylistId);
-            testClient.Save();
-            string newPhone = "323-313-1212";
-
-            //Act
-            testClient.Update(newPhone);
-
-            string result = testClient.GetPhone();
-
-            //Assert
-            Assert.Equal(newPhone, result);
-        }
+        // [Fact]
+        // public void Test_Update_UpdatesClientInDatabase()
+        // {
+        //     //Arrange
+        //     string name = "Becky";
+        //     string phone = "253-234-5678";
+        //     string newName = "Bob";
+        //     string newPhone = "111-111-1111";
+        //     int clientStylistId = 2;
+        //     Client testClient = new Client(name, phone, clientStylistId);
+        //     testClient.Save();
+        //     Client newClient = new Client(newName, newPhone, clientStylistId);
+        //
+        //     //Act
+        //     testClient.Update(newName);
+        //     testClient.Update(newPhone);
+        //     testClient.Update(clientStylistId);
+        //
+        //     testClient.GetName();
+        //     testClient.GetPhone();
+        //
+        //     //Assert
+        //     Assert.Equal(newClient, testClient);
+        // }
 
         [Fact]
         public void Test_Delete_DeletesClientFromDatabase()
@@ -142,6 +147,7 @@ namespace SalonApp
         public void Dispose()
         {
             Client.DeleteAll();
+            Stylist.DeleteAll();
         }
     }
 }

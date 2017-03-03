@@ -192,7 +192,7 @@ namespace SalonApp
             SqlConnection conn = DB.Connection();
             conn.Open();
 
-            SqlCommand cmd = new SqlCommand("UPDATE stylists SET name = @NewName OUTPUT INSERTED.name WHERE id = @StylistId;", conn);
+            SqlCommand cmd = new SqlCommand("UPDATE stylists SET name = @NewName OUTPUT INSERTED.* WHERE id = @StylistId;", conn);
 
             SqlParameter newNameParameter = new SqlParameter();
             newNameParameter.ParameterName = "@NewName";
@@ -207,7 +207,7 @@ namespace SalonApp
 
             while(rdr.Read())
             {
-                this._name = rdr.GetString(0);
+                this._name = rdr.GetString(1);
             }
 
             if (rdr != null)

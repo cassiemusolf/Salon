@@ -176,27 +176,22 @@ namespace SalonApp
             return foundClient;
         }
 
-        public void Update(string newPhone)
+        public void Update(string newName, string newPhone)
         {
             SqlConnection conn = DB.Connection();
             conn.Open();
 
-            SqlCommand cmd = new SqlCommand("UPDATE clients SET phone = @NewPhone OUTPUT INSERTED.* WHERE id = @ClientId;", conn);
+            SqlCommand cmd = new SqlCommand("UPDATE clients SET name = @NewName, phone = @NewPhone OUTPUT INSERTED.* WHERE id = @ClientId;", conn);
 
-            // SqlParameter newNameParameter = new SqlParameter();
-            // newNameParameter.ParameterName = "@NewName";
-            // newNameParameter.Value = NewName;
-            // cmd.Parameters.Add(newNameParameter);
+            SqlParameter newNameParameter = new SqlParameter();
+            newNameParameter.ParameterName = "@NewName";
+            newNameParameter.Value = newName;
+            cmd.Parameters.Add(newNameParameter);
 
             SqlParameter newPhoneParameter = new SqlParameter();
             newPhoneParameter.ParameterName = "@NewPhone";
             newPhoneParameter.Value = newPhone;
             cmd.Parameters.Add(newPhoneParameter);
-
-            // SqlParameter newStylistIdParameter = new SqlParameter();
-            // newStylistIdParameter.ParameterName = "@NewStylistId";
-            // newStylistIdParameter.Value = NewStylistId;
-            // cmd.Parameters.Add(newStylistIdParameter);
 
             SqlParameter clientIdParameter = new SqlParameter();
             clientIdParameter.ParameterName = "@ClientId";
@@ -206,6 +201,7 @@ namespace SalonApp
 
             while(rdr.Read())
             {
+                this._name = rdr.GetName(1);
                 this._phone = rdr.GetString(2);
             }
 
