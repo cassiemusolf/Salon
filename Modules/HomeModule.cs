@@ -51,7 +51,7 @@ namespace SalonApp
                 var StylistClients = SelectedStylist.GetClients();
                 model.Add("stylist", SelectedStylist);
                 model.Add("clients", StylistClients);
-                return View["client.cshtml", model];
+                return View["stylist.cshtml", model];
             };
             Get["stylist/edit/{id}"] = parameters => {
                 Stylist SelectedStylist = Stylist.Find(parameters.id);
