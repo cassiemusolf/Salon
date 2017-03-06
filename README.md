@@ -35,14 +35,15 @@ input: "Delete: Mackenzie" output: "Deleted Mackenzie and all of her clients"_
 
 ## Description
 
-_This web application was built for a hair salon. It has the ability to hold all of the stylist's information as well as the ability to add and delete clients for these stylists. Details can be viewed for each stylist and new stylists can be added to the system.
+_This web application was built for a hair salon. It has the ability to hold all of the stylist's information as well as the ability to add and delete clients for these stylists. Details can be viewed for each stylist and new stylists can be added to the system._
 
 ## Setup/Installation Requirements
 
-* _Connect to browser_
-* _Load localhost page_
-* __
-* __
+* Clone to local machine.
+* Use command "dnu restore" in command prompt/shell.
+* Use command "dnx kestrel" to start server.
+* Navigate to http://localhost:5004 in web browser of choice.
+* Import the DATABASE schema.
 
 ## Known Bugs
 
